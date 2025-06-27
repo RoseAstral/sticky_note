@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    Sticky Note - {{ Page_title }}
+{% endblock %}
+{% block content %}
+    <h2>
+        {{ Page_title }}
+    </h2>
+    <ul>
+        <a href="{% url 'post_create' %}">Add sticky Note</a>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                <P>
+                    {{ post.content }}
+                </P>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Sticky Note - {{ post.title }}
+{% endblock %}
+{% block content %}
+    <h2>
+        {{ post.title }}
+    </h2>
+    <p>
+        {{ post.content }}
+    </p>
+    <a href="{% url 'post_update' pk=post.pk %}">Update Post</a>
+    <a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a>
+    <a href="{% url 'post_list' %}">Back to Post List</a>
+    {% endblock %}
