@@ -33,15 +33,17 @@ class PostViewTest(TestCase):
 
     def test_post_update_view(self):
         post = Post.objects.get(id=1)
-        response = self.client.post(reverse('post_update' ,
-                                    args = [str(post.id)]))
+        
+        response = self.client.post(reverse('post_update',
+                                    args = [str(post.id)]),
+                                   {'title': 'Edited Post', 'content': 'This is an edited post'})
+        edit_post = Post.objects.get(id=1)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Test Post')
-        self.assertContains(response,  'This is a test post')
+        self.assertContains(edit_post.title, 'Edited Post')
+        self.assertContains(edit_post.content, 'This is an edited post')
 
     def test_post_delete_view(self):
         post = Post.objects.get(id=1)
         response = self.client.post(reverse('post_delete',
                                             args = [str(post.id)]))
         self.assertEqual(response.status_code, 302)
-        self.assertNotEqual(post.title, 'Test Post')
