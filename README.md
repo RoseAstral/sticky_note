@@ -2,7 +2,7 @@
  Setup: 
  1) cd into the sticky_notes folder
  2) Run the following commands in the terminal in order:
-    python manage.pymakemigrations
+    python manage.py makemigrations
     python manage.py migrate
     python manage.py runserver
 3) Use the given URL to interact with the application
